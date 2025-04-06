@@ -45,5 +45,5 @@ install(TARGETS IL2CPP_Resolver
 # Install header files
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
     DESTINATION include/IL2CPP_Resolver
-    FILES_MATCHING PATTERN "*.hpp"
+    FILES_MATCHING PATTERN "*.h"
 )
