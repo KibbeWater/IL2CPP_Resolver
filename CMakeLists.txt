@@ -25,6 +25,9 @@ file(GLOB_RECURSE SOURCES
 # Add the static library target
 add_library(IL2CPP_Resolver STATIC ${SOURCES})
 
+# Explicitly set the language for the target
+set_target_properties(IL2CPP_Resolver PROPERTIES LINKER_LANGUAGE CXX)
+
 # Define the installation rules
 install(TARGETS IL2CPP_Resolver
     ARCHIVE DESTINATION lib
