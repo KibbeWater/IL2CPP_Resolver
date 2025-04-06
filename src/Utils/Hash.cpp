@@ -1,9 +1,11 @@
-#pragma once
+// File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Utils\Hash.cpp
+
+#include "../include/IL2CPP_Resolver/Utils/Hash.hpp"
 
 namespace IL2CPP
 {
-	namespace Utils
-	{
+    namespace Utils
+    {
         namespace Hash
         {
             uint32_t Get(const char* m_String)
@@ -42,11 +44,5 @@ namespace IL2CPP
                 return m_Hash;
             }
         }
-	}
+    }
 }
-
-#define IL2CPP_HASH(m_String) \
-[](){ \
-    static constexpr uint32_t m_Hash = IL2CPP::Utils::Hash::GetCompileTime(m_String); \
-    return m_Hash; \
-}()

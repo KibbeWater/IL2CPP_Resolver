@@ -1,4 +1,9 @@
-#pragma once
+// File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Utils\VTable.cpp
+
+#include "../include/IL2CPP_Resolver/Utils/VTable.hpp"
+#include <Windows.h>
+#include <initializer_list>
+#include <cstring>
 
 namespace IL2CPP
 {
@@ -6,7 +11,7 @@ namespace IL2CPP
     {
         namespace VTable
         {
-            void ReplaceFunction(void** m_VTableFunc, void* m_NewFunc, void** m_Original = nullptr)
+            void ReplaceFunction(void** m_VTableFunc, void* m_NewFunc, void** m_Original)
             {
                 if (!m_VTableFunc)
                     return;
