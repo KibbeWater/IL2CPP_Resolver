@@ -25,8 +25,33 @@ target_include_directories(IL2CPP_Resolver PUBLIC
 # Explicitly set the language for the target
 set_target_properties(IL2CPP_Resolver PROPERTIES LINKER_LANGUAGE CXX)
 
-# Add an alias target to mimic the exported target
+# Add namespace alias targets
 add_library(IL2CPP_Resolver::IL2CPP_Resolver ALIAS IL2CPP_Resolver)
+add_library(resolver::IL2CPP_Resolver ALIAS IL2CPP_Resolver)
+
+# This section allows FetchContent to work with any chosen name
+# This block detects if we're being included via FetchContent and creates an alias with that name
+if(DEFINED PROJECT_IS_INCLUDED)
+    # Nothing specific needed here, the alias is created below
+elseif(DEFINED PROJECT_NAME AND NOT PROJECT_NAME STREQUAL IL2CPP_Resolver)
+    # We're included in another project, but not via FetchContent
+else()
+    # Check if we're being consumed via FetchContent
+    get_directory_property(parent_dir PARENT_DIRECTORY)
+    if(parent_dir)
+        get_directory_property(fetch_dirs DIRECTORY "${parent_dir}" VARIABLES)
+        foreach(var ${fetch_dirs})
+            if("${var}" MATCHES "(.*)_SOURCE_DIR" AND "${${var}}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
+                string(REGEX REPLACE "_SOURCE_DIR$" "" fetch_name "${var}")
+                message(STATUS "IL2CPP_Resolver is being included via FetchContent with name: ${fetch_name}")
+                
+                # Create an alias with the FetchContent name
+                message(STATUS "Creating alias: ${fetch_name}::IL2CPP_Resolver")
+                add_library(${fetch_name}::IL2CPP_Resolver ALIAS IL2CPP_Resolver)
+            endif()
+        endforeach()
+    endif()
+endif()
 
 # Add an option to enable installation during FetchContent builds
 option(IL2CPP_RESOLVER_ENABLE_INSTALL "Enable installation of IL2CPP_Resolver during FetchContent builds" ON)
@@ -56,6 +81,14 @@ if(IL2CPP_RESOLVER_ENABLE_INSTALL)
         DESTINATION ${CMAKE_INSTALL_DIR}
     )
     
+    # Also export with resolver namespace for backward compatibility
+    install(
+        EXPORT IL2CPP_ResolverTargets
+        FILE resolverTargets.cmake
+        NAMESPACE resolver::
+        DESTINATION ${CMAKE_INSTALL_DIR}
+    )
+    
     # Install target and headers
     install(TARGETS IL2CPP_Resolver
         EXPORT IL2CPP_ResolverTargets
@@ -82,5 +115,11 @@ if(IL2CPP_RESOLVER_ENABLE_INSTALL)
     export(EXPORT IL2CPP_ResolverTargets
         FILE ${CMAKE_CURRENT_BINARY_DIR}/IL2CPP_ResolverTargets.cmake
         NAMESPACE IL2CPP_Resolver::
+    )
+    
+    # Also export with resolver namespace for backward compatibility
+    export(EXPORT IL2CPP_ResolverTargets
+        FILE ${CMAKE_CURRENT_BINARY_DIR}/resolverTargets.cmake
+        NAMESPACE resolver::
     )
 endif()

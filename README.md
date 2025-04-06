@@ -20,9 +20,11 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(IL2CPP_Resolver)
 
-# Link your target with IL2CPP_Resolver
+# Link your target with IL2CPP_Resolver (using either namespace works)
 add_executable(YourApp main.cpp)
 target_link_libraries(YourApp PRIVATE IL2CPP_Resolver::IL2CPP_Resolver)
+# Alternatively, you can use:
+# target_link_libraries(YourApp PRIVATE resolver::IL2CPP_Resolver)
 ```
 
 That's it! All headers will be automatically available to your target.
@@ -36,11 +38,13 @@ find_package(IL2CPP_Resolver REQUIRED)
 
 add_executable(YourApp main.cpp)
 target_link_libraries(YourApp PRIVATE IL2CPP_Resolver::IL2CPP_Resolver)
+# Alternatively, you can use:
+# target_link_libraries(YourApp PRIVATE resolver::IL2CPP_Resolver)
 ```
 
 ### Quick Example
 ```cpp
-#include <IL2CPP_Resolver.hpp>
+#include <IL2CPP_Resolver.h>
 
 void SomeFunction()
 {
