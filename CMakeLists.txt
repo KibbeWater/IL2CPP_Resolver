@@ -35,19 +35,31 @@ target_include_directories(IL2CPP_Resolver PUBLIC
 # Explicitly set the language for the target
 set_target_properties(IL2CPP_Resolver PROPERTIES LINKER_LANGUAGE CXX)
 
-# Define the installation rules
-install(TARGETS IL2CPP_Resolver
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
-)
+# Add an option to enable installation during FetchContent builds
+option(IL2CPP_RESOLVER_ENABLE_INSTALL "Enable installation of IL2CPP_Resolver during FetchContent builds" ON)
 
-# Install header files
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
-    DESTINATION include/IL2CPP_Resolver
-    FILES_MATCHING PATTERN "*.h"
-)
+if(IL2CPP_RESOLVER_ENABLE_INSTALL)
+    # Ensure the install rules are executed
+    include(CMakePackageConfigHelpers)
+    install(TARGETS IL2CPP_Resolver
+        EXPORT IL2CPP_ResolverTargets
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin
+    )
 
-install(
-  DIRECTORY include DESTINATION .
-)
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+        DESTINATION include/IL2CPP_Resolver
+        FILES_MATCHING PATTERN "*.h"
+    )
+
+    install(
+        DIRECTORY include DESTINATION .
+    )
+
+    # Export the package configuration
+    export(EXPORT IL2CPP_ResolverTargets
+        FILE ${CMAKE_CURRENT_BINARY_DIR}/IL2CPP_ResolverTargets.cmake
+        NAMESPACE IL2CPP_Resolver::
+    )
+endif()
