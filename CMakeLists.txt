@@ -48,9 +48,17 @@ if(IL2CPP_RESOLVER_ENABLE_INSTALL)
         RUNTIME DESTINATION bin
     )
 
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
-        DESTINATION include/IL2CPP_Resolver
+    # Install all header files from the include directory to the correct destination
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+        DESTINATION include
         FILES_MATCHING PATTERN "*.h"
+    )
+
+    # Install header files from the root source directory that might be missed
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.h"
+        PATTERN "include/*" EXCLUDE  # Exclude the include directory to avoid duplicates
     )
 
     install(
