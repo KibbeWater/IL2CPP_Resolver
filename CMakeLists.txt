@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 # Project name
-project(IL2CPP_Resolver LANGUAGE C CXX)
+project(IL2CPP_Resolver C CXX)
 
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 17)
