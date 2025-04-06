@@ -1,4 +1,4 @@
-#include "il2cppArray.hpp"
+#include "il2cppArray.h"
 #include <cstring>
 
 namespace Unity

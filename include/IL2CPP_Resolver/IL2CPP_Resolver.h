@@ -34,33 +34,33 @@
 	#define IL2CPP_MAIN_MODULE IL2CPP_RStr("GameAssembly.dll")
 #endif
 
-#include "Defines.hpp"
+#include "Defines.h"
 
 // IL2CPP Headers
-#include "Data.hpp"
+#include "Data.h"
 
 // Unity Headers
-#include "Unity/Obfuscators.hpp"
-#include "Unity/Defines.hpp"
-#include "Unity/Structures/il2cpp.hpp"
-#include "Unity/Structures/il2cppArray.hpp"
-#include "Unity/Structures/il2cppDictionary.hpp"
-#include "Unity/Structures/Engine.hpp"
-#include "Unity/Structures/System_String.hpp"
+#include "Unity/Obfuscators.h"
+#include "Unity/Defines.h"
+#include "Unity/Structures/il2cpp.h"
+#include "Unity/Structures/il2cppArray.h"
+#include "Unity/Structures/il2cppDictionary.h"
+#include "Unity/Structures/Engine.h"
+#include "Unity/Structures/System_String.h"
 
 // IL2CPP Utils
-#include "Utils/Hash.hpp"
-#include "Utils/VTable.hpp"
+#include "Utils/Hash.h"
+#include "Utils/VTable.h"
 
 // IL2CPP API Headers
-#include "API/Domain.hpp"
-#include "API/Class.hpp"
-#include "API/ResolveCall.hpp"
-#include "API/String.hpp"
-#include "API/Thread.hpp"
+#include "API/Domain.h"
+#include "API/Class.h"
+#include "API/ResolveCall.h"
+#include "API/String.h"
+#include "API/Thread.h"
 
 // IL2CPP Headers before Unity API
-#include "SystemTypeCache.hpp"
+#include "SystemTypeCache.h"
 
 // Unity Class APIs - So they're accessible everywhere
 namespace Unity
@@ -75,17 +75,17 @@ namespace Unity
 }
 
 // Unity API
-#include "Unity/API/Object.hpp"
-#include "Unity/API/GameObject.hpp"
-#include "Unity/API/Camera.hpp"
-#include "Unity/API/Component.hpp"
-#include "Unity/API/LayerMask.hpp"
-#include "Unity/API/Rigidbody.hpp"
-#include "Unity/API/Transform.hpp"
+#include "Unity/API/Object.h"
+#include "Unity/API/GameObject.h"
+#include "Unity/API/Camera.h"
+#include "Unity/API/Component.h"
+#include "Unity/API/LayerMask.h"
+#include "Unity/API/Rigidbody.h"
+#include "Unity/API/Transform.h"
 
 // IL2CPP Headers after Unity API
-#include "Utils/Helper.hpp"
-#include "API/Callback.hpp"
+#include "Utils/Helper.h"
+#include "API/Callback.h"
 
 namespace IL2CPP
 {

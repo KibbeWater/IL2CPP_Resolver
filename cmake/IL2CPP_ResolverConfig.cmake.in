@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/IL2CPP_ResolverTargets.cmake")
+
+# This macro ensures backward compatibility
+set_and_check(IL2CPP_RESOLVER_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set_and_check(IL2CPP_RESOLVER_LIB_DIR "@PACKAGE_LIB_INSTALL_DIR@")
+
+check_required_components(IL2CPP_Resolver)

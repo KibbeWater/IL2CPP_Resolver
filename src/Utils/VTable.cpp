@@ -1,6 +1,6 @@
 // File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Utils\VTable.cpp
 
-#include "../include/IL2CPP_Resolver/Utils/VTable.hpp"
+#include "../include/IL2CPP_Resolver/Utils/VTable.h"
 #include <Windows.h>
 #include <initializer_list>
 #include <cstring>

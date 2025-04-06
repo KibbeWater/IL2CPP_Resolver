@@ -1,6 +1,6 @@
 // File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Unity\Structures\il2cppDictionary.cpp
 
-#include "../include/IL2CPP_Resolver/Unity/Structures/il2cppDictionary.hpp"
+#include "../include/IL2CPP_Resolver/Unity/Structures/il2cppDictionary.h"
 
 namespace Unity
 {

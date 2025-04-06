@@ -1,4 +1,4 @@
-#include "LayerMask.hpp"
+#include "LayerMask.h"
 
 namespace Unity
 {

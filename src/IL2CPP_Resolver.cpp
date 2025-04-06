@@ -1,6 +1,6 @@
 // File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\IL2CPP_Resolver.cpp
 
-#include "IL2CPP_Resolver.hpp"
+#include "IL2CPP_Resolver.h"
 
 namespace IL2CPP
 {

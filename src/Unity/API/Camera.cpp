@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "Camera.h"
 
 namespace Unity
 {
@@ -44,12 +44,12 @@ namespace Unity
 
 		CCamera* GetCurrent()
 		{
-			return reinterpret_cast<CCamera*(UNITY_CALLING_CONVENTION)()>(m_CameraFunctions.m_GetCurrent)();
+			return reinterpret_cast<CCCamera*(UNITY_CALLING_CONVENTION)()>(m_CameraFunctions.m_GetCurrent)();
 		}
 
 		CCamera* GetMain()
 		{
-			return reinterpret_cast<CCamera*(UNITY_CALLING_CONVENTION)()>(m_CameraFunctions.m_GetMain)();
+			return reinterpret_cast<CCCamera*(UNITY_CALLING_CONVENTION)()>(m_CameraFunctions.m_GetMain)();
 		}
 	}
 }
