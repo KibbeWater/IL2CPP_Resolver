@@ -7,29 +7,19 @@ project(IL2CPP_Resolver C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add include directories
-include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/API
-    ${CMAKE_CURRENT_SOURCE_DIR}/Unity
-    ${CMAKE_CURRENT_SOURCE_DIR}/Structures
-    ${CMAKE_CURRENT_SOURCE_DIR}/Utils
-)
-
 # Collect all source files
 file(GLOB_RECURSE SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
 
 # Add the static library target
 add_library(IL2CPP_Resolver STATIC ${SOURCES})
 
-# Add include directories to the target
-# This ensures the include directories are available when using FetchContent
+# Add include directories to the target with proper PUBLIC visibility
+# This ensures headers are correctly propagated to dependent targets
 target_include_directories(IL2CPP_Resolver PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-    $<INSTALL_INTERFACE:include/IL2CPP_Resolver>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
 )
 
 # Explicitly set the language for the target
@@ -48,21 +38,24 @@ if(IL2CPP_RESOLVER_ENABLE_INSTALL)
         RUNTIME DESTINATION bin
     )
 
-    # Install all header files from the include directory to the correct destination
+    # Install header files from include directory with proper directory structure
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
         DESTINATION include
-        FILES_MATCHING PATTERN "*.h"
+        FILES_MATCHING 
+        PATTERN "*.h"
+        PATTERN "*.hpp"
     )
 
-    # Install header files from the root source directory that might be missed
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
-        DESTINATION include
-        FILES_MATCHING PATTERN "*.h"
-        PATTERN "include/*" EXCLUDE  # Exclude the include directory to avoid duplicates
+    # Create a package configuration file
+    configure_package_config_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/IL2CPP_ResolverConfig.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/IL2CPP_ResolverConfig.cmake
+        INSTALL_DESTINATION lib/cmake/IL2CPP_Resolver
     )
 
-    install(
-        DIRECTORY include DESTINATION .
+    # Install the package configuration file
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/IL2CPP_ResolverConfig.cmake
+        DESTINATION lib/cmake/IL2CPP_Resolver
     )
 
     # Export the package configuration
