@@ -1,6 +1,6 @@
 // File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Unity\Structures\System_String.cpp
 
-#include "../include/IL2CPP_Resolver/Unity/Structures/System_String.h"
+#include "System_String.h"
 #include <Windows.h>
 #include <cstring>
 #include <string>

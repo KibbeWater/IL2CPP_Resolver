@@ -1,6 +1,6 @@
 // File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Utils\Hash.cpp
 
-#include "../include/IL2CPP_Resolver/Utils/Hash.h"
+#include "Hash.h"
 
 namespace IL2CPP
 {

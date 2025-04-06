@@ -22,6 +22,16 @@ target_include_directories(IL2CPP_Resolver PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
+# Add private include directories for source files 
+target_include_directories(IL2CPP_Resolver PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IL2CPP_Resolver
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IL2CPP_Resolver/API
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IL2CPP_Resolver/Unity
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IL2CPP_Resolver/Unity/API
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IL2CPP_Resolver/Unity/Structures
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/IL2CPP_Resolver/Utils
+)
+
 # Explicitly set the language for the target
 set_target_properties(IL2CPP_Resolver PROPERTIES LINKER_LANGUAGE CXX)
 

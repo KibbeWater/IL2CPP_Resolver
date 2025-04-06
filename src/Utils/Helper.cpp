@@ -1,10 +1,10 @@
 // File: c:\Users\kibbe\Documents\VSC\IL2CPP_Resolver\src\Utils\Helper.cpp
 
-#include "../include/IL2CPP_Resolver/Utils/Helper.h"
-#include "../include/IL2CPP_Resolver/Unity/Object.h"
-#include "../include/IL2CPP_Resolver/Unity/API/GameObject.h"
-#include "../include/IL2CPP_Resolver/Unity/API/Component.h"
-#include "../include/IL2CPP_Resolver/Unity/Structures/il2cppArray.h"
+#include "Helper.h"
+#include "Object.h"
+#include "GameObject.h"
+#include "Component.h"
+#include "il2cppArray.h"
 
 namespace IL2CPP
 {
