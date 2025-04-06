@@ -25,6 +25,13 @@ file(GLOB_RECURSE SOURCES
 # Add the static library target
 add_library(IL2CPP_Resolver STATIC ${SOURCES})
 
+# Add include directories to the target
+# This ensures the include directories are available when using FetchContent
+target_include_directories(IL2CPP_Resolver PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include/IL2CPP_Resolver>
+)
+
 # Explicitly set the language for the target
 set_target_properties(IL2CPP_Resolver PROPERTIES LINKER_LANGUAGE CXX)
 
